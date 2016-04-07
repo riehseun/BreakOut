@@ -1,0 +1,32 @@
+1. AMI id:
+2. under the folder: csc309/A2
+3. We created AMI from AWS
+4. Please use firefox
+5. 
+
+-User starts wtih 1 ball and can add another ball by pressing backspace
+-User can used left and right arrow keys to move the paddle
+-For each stage user clears, he can get additional ball by pressing backspace
+-If user loses all balls, the game is over
+-After gameover, user can restart the game by pressing enter
+
+-There are three object for this program
+1. Ball obejct
+having horizontal coordiate, vertical coordiante, width, horizontal direction, and vertical direction
+
+2. Paddle object
+having horizontal coordiate, vertical coordiante, width, height
+
+3. Bricks object
+having horizontal coordiate, vertical coordiante, width, height, and level
+
+There are three major functions in this code
+1. init()
+Initialize the ball, paddle, bricks. This function get called when the screen loads and user presses enter
+2. update()
+Update position of all object. Check collision and game ending condition 
+3. render()
+clear the canvas and redraw every object
+
+The main function recursively calls update and render function until the either gameover function is called (in which case all balls are dead) or go to next stage (in which case all brick are dead and user maintains all value for score, stage, and number of balls)
+

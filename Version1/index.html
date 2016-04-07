@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Breakout</title>
+		
+		<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="style.css">
+	</head>	
+	<body>
+		<div class = "instruction">
+			<ul>
+			<h1>Game Instruction</h1>
+			<li>Press <span class="i1">Enter</span> to start or restart</li>
+			<li>Use <span class="i2">Arrow Keys</span> to move</li>
+			</ul>
+		</div>
+		<div class="figure">
+			<p>Score:</p>
+			<p id="score">0</p>
+			<p>Stage:</p>
+			<p id="stage">0</p>
+			<p>Number of Balls Left</p>
+			<p id="ballNum">0</p>
+		</div>
+    <audio id='beepEnd'>
+      <source src="BeepEnd.mp3" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+		<script src="breakout.js"></script>
+	</body>
+</html>

@@ -1,0 +1,52 @@
+canvas {
+	border: 1px solid black;
+	background-color: black;
+}
+p {
+	margin: 0px;
+	font-size: medium;
+}
+h1 {
+	font-size: large;
+	margin: 0px;
+}
+.instruction {
+	background-color: AliceBlue;
+	padding: 1px;
+}
+.figure {
+	float: left;
+	background-color: Cornsilk;
+	padding: 10px;
+}
+ul li {
+	display: inline;
+	padding-right: 10px;
+			}
+.i1 {
+	color: red;
+}
+.i2 {
+	color: blue;
+}
+.i3 {
+	color: firebrick;
+}
+.i4 {
+	color: crimson;
+}
+#bricks {
+	color: red;
+}
+#score {
+	color: red;
+}
+#stage {
+	color: red;
+}
+#life {
+	color: red;
+}
+#ballNum {
+	color: red;
+}

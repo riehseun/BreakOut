@@ -1,0 +1,76 @@
+1. AMI id: ami-c00580a8
+2. under the folder: ~/csc309
+3. We created AMI from AWS. Launching image file will do.
+4. Please use Firefox. 
+5. Description
+
+5.1 GamePlay
+- User can start game play by pressing 'enter'. 
+- 'BO' means breakout. 
+- User gets three balls to play. 
+- After losing all balls, the game end end showing 'GG' on screen. 
+- During play, score and number of balls are shown on top-left. 
+- If game over, user can restart the game by pressing 'enter'.
+- If user wins the game by winning two stages, the screen will show 'WIN'. Then user can press 'enter' to replay the game
+
+5.2 Implementation Detail
+- When ball hits upper wall, the paddle size shirink to 75% of original width.
+- User can play two stages
+- When the game end, beep sound comes out.
+- Bricks at the lowest row give 6 points and bricks at the highest row gives 1 point.
+- velocity of the ball changes, with some randomness, when ball hits the paddle.
+
+5.3 Testing
+- Make width of paddle equal to width of canvas. Then, let the game play by itself.
+5.4 Classes in breakout.js
+
+5.4.1. World class has responsibility for all game elements. For example,
+- status(String): current game status
+- bricks(Array of Bricks): game element
+- paddle(Paddle): game element
+- balls(Array of Balls):game element. The reason for making an array is for future implementation for multiple balls on one screen.
+- score(int): score
+- ball_count(int): remaining number of balls
+- stage(int): current stage.
+- x, y, width, height - screen size of canvas without gray walls and upper black area.
+
+World class has following functions.
+- init(): make game elements and start tick.
+- start(): start game. This will add ball so that users can play
+- die(): called when player loses a ball
+- end(): called when there is no remaining balls
+- win(): called when user wins the game by breaking all bricks in second stage
+- clear(): clear score, balls, stage when restarting game.
+- tick(): calculate elapsed time and call tick function. detects collision. 
+- draw(): draw all game elements on the screen.
+
+5.4.2. GameElement class
+- GameElement class is bases for other game elements like paddle, bricks, and balls. 
+- Every game element has location and size attribute. 
+- Every game element has draw and tick function.
+
+5.4.3 Bricks inherits GameElement
+- This class has additional 'broken' and 'score' attritbute. 
+- 'broken': flag for indicating whether brick is broken or not.
+- score: player earn score by breaking bricks
+- Brick objects does not use tick() fucntion since they need not be animated
+- Bricks are drawn via draw() function
+
+5.4.4. Ball inherits GameElement
+- Ball has additional attributes than Bricks.
+- prevX, prevY: location of ball before tick. It is needed to know wheter ball hits left or right side of brick.
+- radius: radius of ball.
+- x_velo, y_velo, same_dir, minimum_speed, x_maxVel, y_maxVel, x_minVel, y_minVel; These variables are used to control movement of ball
+- Uses both tick() and draw() functions
+
+5.4.5. Paddle inherits GameElement
+- Paddle has speed, dir, shrinked attribute in addition 
+- during tick(), its new position is calculated by the user keyboard input and its speed
+
+5.5 Control Flow of Game
+- When window loaded, canvas element is appended and World object is initiated. - RequestAnimationFrame is called to draw scene. (All scenes are redrawn)
+- World.prototype.tick() function calculates elapsed time to figure out how much time passed, and gives this information to game elements with elapsed time argument. 
+- Then, each of them processes their status with their own function. 
+- For instances, ball and paddle objects calculate their position using elapsed time and velocity. 
+- World manage collision between game elements. It also handles detecting game over and regenerating bricks upon player breaking all bricks
+- Keyboard inputs are managed separately. We did not make this feature as an object because the requirement is so simple, but it is common design to make input manager in game engine. In our script, we just keep tracking of the key pressed. 
